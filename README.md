@@ -261,7 +261,7 @@ async UniTask FooAsync(CancellationToken cancellationToken)
 
 async UniTask BarAsync(CancellationToken cancellationToken)
 {
-    await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken);
+    await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken: cancellationToken);
 }
 ```
 
