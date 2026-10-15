@@ -772,11 +772,11 @@ How to create an async iterator: C# 8.0 supports async iterator(`async yield ret
 
 ```csharp
 // IAsyncEnumerable, C# 8.0 version of async iterator. ( do not use this style, IAsyncEnumerable is not controled in UniTask).
-public async IAsyncEnumerable<int> MyEveryUpdate([EnumeratorCancellation]CancellationToken cancelationToken = default)
+public async IAsyncEnumerable<int> MyEveryUpdate([EnumeratorCancellation]CancellationToken cancellationToken = default)
 {
     var frameCount = 0;
     await UniTask.Yield();
-    while (!token.IsCancellationRequested)
+    while (!cancellationToken.IsCancellationRequested)
     {
         yield return frameCount++;
         await UniTask.Yield();
@@ -1152,7 +1152,7 @@ public class ZeroAllocAsyncAwaitInDotNetCore
 }
 
 // UniTask does not return to original SynchronizationContext but you can use helper `ReturnToCurrentSynchronizationContext`.
-public ValueTask TestAsync()
+public async ValueTask TestAsync()
 {
     await using (UniTask.ReturnToCurrentSynchronizationContext())
     {
